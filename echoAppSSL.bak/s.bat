@@ -1,0 +1,1 @@
+java -Djavax.net.ssl.keyStore=keystore -Djavax.net.ssl.keyStorePassword=buck2EyE EchoServer

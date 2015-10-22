@@ -1,0 +1,13 @@
+#mailTester properties file
+#Mon Oct 20 21:13:12 EDT 2008
+fromAddr=dsingley@triggeremails.com
+smtpPassWord=
+smtpServerName=67.192.93.232
+sender=
+replyAddr=dsingley@triggeremails.com
+return-path=
+subject=postfixGold TEST MAIL (67.192.93.232, trig7.trig-mailer.com)
+smtpPort=25
+template=Trigger Email Marketing, LLC.
+toAddr=dsingley@fiddleheadconsultants.com
+smtpUserName=

@@ -1,0 +1,110 @@
+JAVA PROFILE 1.0.1, created Tue Aug 19 20:42:27 2008
+
+Header for -agentlib:hprof (or -Xrunhprof) ASCII Output (JDK 5.0 JVMTI based)
+
+@(#)jvm.hprof.txt	1.5 06/01/28
+
+ Copyright (c) 2006 Sun Microsystems, Inc. All  Rights Reserved.
+
+WARNING!  This file format is under development, and is subject to
+change without notice.
+
+This file contains the following types of records:
+
+THREAD START
+THREAD END      mark the lifetime of Java threads
+
+TRACE           represents a Java stack trace.  Each trace consists
+                of a series of stack frames.  Other records refer to
+                TRACEs to identify (1) where object allocations have
+                taken place, (2) the frames in which GC roots were
+                found, and (3) frequently executed methods.
+
+HEAP DUMP       is a complete snapshot of all live objects in the Java
+                heap.  Following distinctions are made:
+
+                ROOT    root set as determined by GC
+                CLS     classes 
+                OBJ     instances
+                ARR     arrays
+
+SITES           is a sorted list of allocation sites.  This identifies
+                the most heavily allocated object types, and the TRACE
+                at which those allocations occurred.
+
+CPU SAMPLES     is a statistical profile of program execution.  The VM
+                periodically samples all running threads, and assigns
+                a quantum to active TRACEs in those threads.  Entries
+                in this record are TRACEs ranked by the percentage of
+                total quanta they consumed; top-ranked TRACEs are
+                typically hot spots in the program.
+
+CPU TIME        is a profile of program execution obtained by measuring
+                the time spent in individual methods (excluding the time
+                spent in callees), as well as by counting the number of
+                times each method is called. Entries in this record are
+                TRACEs ranked by the percentage of total CPU time. The
+                "count" field indicates the number of times each TRACE 
+                is invoked.
+
+MONITOR TIME    is a profile of monitor contention obtained by measuring
+                the time spent by a thread waiting to enter a monitor.
+                Entries in this record are TRACEs ranked by the percentage
+                of total monitor contention time and a brief description
+                of the monitor.  The "count" field indicates the number of 
+                times the monitor was contended at that TRACE.
+
+MONITOR DUMP    is a complete snapshot of all the monitors and threads in 
+                the System.
+
+HEAP DUMP, SITES, CPU SAMPLES|TIME and MONITOR DUMP|TIME records are generated 
+at program exit.  They can also be obtained during program execution by typing 
+Ctrl-\ (on Solaris) or by typing Ctrl-Break (on Win32).
+
+--------
+
+THREAD START (obj=50000138, id = 200001, name="main", group="main")
+THREAD START (obj=50000138, id = 200004, name="threadA", group="main")
+THREAD START (obj=50000138, id = 200005, name="threadB", group="main")
+THREAD START (obj=50000138, id = 200006, name="threadD", group="main")
+THREAD END (id = 200006)
+THREAD START (obj=50000138, id = 200007, name="threadC", group="main")
+THREAD END (id = 200001)
+THREAD START (obj=50000138, id = 200008, name="DestroyJavaVM", group="main")
+THREAD END (id = 200004)
+THREAD END (id = 200005)
+THREAD END (id = 200007)
+THREAD END (id = 200008)
+TRACE 300048:
+	java.io.File$1.run(<Unknown Source>:Unknown line)
+	java.lang.Shutdown.runHooks(<Unknown Source>:Unknown line)
+	java.lang.Shutdown.sequence(<Unknown Source>:Unknown line)
+	java.lang.Shutdown.shutdown(<Unknown Source>:Unknown line)
+TRACE 300041:
+	java.io.PrintStream.write(<Unknown Source>:Unknown line)
+	sun.nio.cs.StreamEncoder.writeBytes(<Unknown Source>:Unknown line)
+	sun.nio.cs.StreamEncoder.implFlushBuffer(<Unknown Source>:Unknown line)
+	sun.nio.cs.StreamEncoder.flushBuffer(<Unknown Source>:Unknown line)
+	java.io.OutputStreamWriter.flushBuffer(<Unknown Source>:Unknown line)
+	java.io.PrintStream.write(<Unknown Source>:Unknown line)
+TRACE 300030:
+	java.io.FilePermission.init(<Unknown Source>:Unknown line)
+	java.io.FilePermission.<init>(<Unknown Source>:Unknown line)
+	sun.net.www.protocol.file.FileURLConnection.getPermission(<Unknown Source>:Unknown line)
+	java.net.URLClassLoader.getPermissions(<Unknown Source>:Unknown line)
+	sun.misc.Launcher$AppClassLoader.getPermissions(<Unknown Source>:Unknown line)
+	java.security.SecureClassLoader.getProtectionDomain(<Unknown Source>:Unknown line)
+TRACE 300042:
+	java.io.FileOutputStream.writeBytes(<Unknown Source>:Unknown line)
+	java.io.FileOutputStream.write(<Unknown Source>:Unknown line)
+	java.io.BufferedOutputStream.flushBuffer(<Unknown Source>:Unknown line)
+	java.io.BufferedOutputStream.flush(<Unknown Source>:Unknown line)
+	java.io.PrintStream.write(<Unknown Source>:Unknown line)
+	sun.nio.cs.StreamEncoder.writeBytes(<Unknown Source>:Unknown line)
+CPU SAMPLES BEGIN (total = 4) Tue Aug 19 20:42:38 2008
+rank   self  accum   count trace method
+   1 25.00% 25.00%       1 300048 java.io.File$1.run
+   2 25.00% 50.00%       1 300041 java.io.PrintStream.write
+   3 25.00% 75.00%       1 300030 java.io.FilePermission.init
+   4 25.00% 100.00%       1 300042 java.io.FileOutputStream.writeBytes
+CPU SAMPLES END

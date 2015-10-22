@@ -1,0 +1,1 @@
+java -Djavax.net.ssl.trustStore=foobar -Djavax.net.ssl.trustStorePassword=foobar EchoClient

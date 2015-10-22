@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.5.3 
+Created-By: Apache Maven
+Built-By: tucu
+Package: com.sun.syndication
+Build-Jdk: 1.5.0_13
+Extension-Name: rome
+Specification-Title: Rss and atOM utilitiEs (ROME)
+Specification-Vendor: Sun Microsystems
+Implementation-Title: com.sun.syndication
+Implementation-Vendor: Sun Microsystems
+Implementation-Version: 1.0RC1
+

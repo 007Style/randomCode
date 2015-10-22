@@ -1,0 +1,77 @@
+/*
+ * mailTester.java
+ *
+ * Created on January 30, 2008, 8:27 PM
+ *
+ * To change this template, choose Tools | Template Manager
+ * and open the template in the editor.
+ */
+
+package mailTester;
+
+/**
+ *
+ * @author dsingley
+ */
+public class mailTester {
+    
+    /** Creates a new instance of mailTester */
+    public mailTester() {
+        mailEngine mE = new mailEngine();
+        fileWriter fW = new fileWriter();
+        fW.createFile("LOGS/mailerD.log");
+        String[] taddr = new String[1];
+        String[] taddr1 = new String[1];
+        taddr[0] = "peter@fiddleheadconsultants.com";  // "test@dkimtest.jason.long.name";  //"dsingley@fiddleheadconsultants.com"; //taddr[1] = "brian.maples@rackspace.com";
+        taddr1[0] = "peter@fiddleheadconsultants.com";
+        String[] tbcc = null;
+        String raddr = "postmaster@trig6.trig-mailer.com"; //postmaster@triggeremails.com";
+        String sub = "postfixGold TEST MAIL (67.192.93.232, trig7.trig-mailer.com)";
+        String temp = "Trigger Email Marketing, LLC.";
+        String faddr = "postmaster@trig7.trig-mailer.com";
+        String port = "25";  //"587";  //25";
+        String smtpS = "67.192.114.35";  //"67.192.93.232";
+        String eformat = "text/plain";
+        String uName = "";
+        String pWord = "";
+        
+        /*
+        sub = "Postfix Server #2 TEST (67.192.114.34)";
+        smtpS = "67.192.114.34";
+        mailPoster mP2 = new mailPoster(2, taddr, tbcc, raddr, sub, temp, faddr, port, smtpS, eformat, uName, pWord, fW);  mP2.start();
+        */
+        //sub = "dkim test";
+        //smtpS = "67.192.93.230";
+        faddr = "dsingley@fiddleheadconsultants.com";
+        raddr = "dsingley@fiddleheadconsultants.com";
+        taddr[0] = "test@test.trig-mailer.com";
+        mailPoster mP1 = new mailPoster(2, taddr, tbcc, raddr, sub, temp, faddr, port, smtpS, eformat, uName, pWord, fW);  mP1.start();
+        
+        //mailPoster mP2 = new mailPoster(2, taddr1, tbcc, raddr, sub, temp, faddr, port, smtpS, eformat, uName, pWord, fW);  mP2.start();
+        /*
+        sub = "Postfix Server #1 TEST (67.192.126.210)";
+        smtpS = "67.192.114.36";
+        mailPoster mP5 = new mailPoster(2, taddr, tbcc, raddr, sub, temp, faddr, port, smtpS, eformat, uName, pWord, fW);  mP5.start();
+        
+        sub = "Postfix Server #1 TEST (67.192.126.210)";
+        smtpS = "67.192.114.36";
+        mailPoster mP6 = new mailPoster(2, taddr, tbcc, raddr, sub, temp, faddr, port, smtpS, eformat, uName, pWord, fW);  mP6.start();
+        */
+         
+        /*
+        sub = "Postfix Server #3 TEST (67.192.114.35)";
+        smtpS = "67.192.114.35";
+        mailPoster mP3 = new mailPoster(2, taddr, tbcc, raddr, sub, temp, faddr, port, smtpS, eformat, uName, pWord, fW);  mP3.start();
+        */
+        //mE.postMail(taddr, tbcc, raddr, String subject, String message , String from, String smtp, String smtpPort, String eFormat)
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        mailTester mT = new mailTester();
+    }
+
+}
